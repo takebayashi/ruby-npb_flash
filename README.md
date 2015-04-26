@@ -20,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+crawler = NpbFlash::Crawler.new(Date.new(2015, 4, 25))
+
+game = crawler.get_game_by_team('L')
+
+game.innings.each do |inning|
+  p inning.title
+  inning.events.each do |event|
+    p event
+  end
+end
+```
 
 ## Development
 

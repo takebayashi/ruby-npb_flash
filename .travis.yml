@@ -2,10 +2,12 @@ language: ruby
 rvm:
 - 2.2.2
 - 2.1.6
+- 2.0.0-p645
 deploy:
   provider: rubygems
   gems: npb_flash
   on:
     tags: true
+    rvm: 2.2.2
   api_key:
     secure: iJ0QARCo42CLBLZfbwrizUTmYFdCMtWsOEFNaH+hqShToCvV8ql7yb1UCHI3v6DNCjfQG6kd6cAHikKMjycKupHY1JhvqZq5gQoglIAd61vm4O/B89aodt7rYnTWOy9XM0lO1adG4T/4Mwm1KMuMlSgWcclI74R9Khazc0qrhDw=

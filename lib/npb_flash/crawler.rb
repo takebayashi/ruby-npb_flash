@@ -15,17 +15,23 @@ module NpbFlash
         f.read
       end
       doc = Nokogiri::HTML.parse(html, nil, 'utf-8')
-      doc.xpath('//div[@id="gm_sch"]//table[@class="teams"]').map do |g|
+      metadata = doc.xpath('//div[@id="gm_sch"]//table[@class="teams"]').map do |g|
         visitor, home = g.xpath('.//tr//th[1]//a/div/@class').map do |s|
           s.text.split(/\s/)[1]
         end
-        id = g.xpath('.//table[@class="score"]//tr[2]//a')[0]['href'].match(/[\d]+/)[0]
-        {
-          id: id,
-          home: home,
-          visitor: visitor
-        }
+        ref = g.xpath('.//table[@class="score"]//tr[2]//a')
+        if ref.size == 1
+          id = ref[0]['href'].match(/[\d]+/)[0]
+          {
+            id: id,
+            home: home,
+            visitor: visitor
+          }
+        else
+          nil
+        end
       end
+      metadata.compact
     end
 
     def get_game(id)

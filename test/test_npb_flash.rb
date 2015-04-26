@@ -10,4 +10,10 @@ class TestNpbFlash < Minitest::Test
     metadata = crawler.get_metadata
     assert metadata.size == 6
   end
+
+  def test_crawler_fetches_nothing_for_tomorrow
+    crawler = NpbFlash::Crawler.new(Date.today + 1)
+    metadata = crawler.get_metadata
+    assert metadata.size == 0
+  end
 end

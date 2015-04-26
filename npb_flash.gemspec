@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["shun@takebayashi.asia"]
 
   spec.summary       = %q{Scraping library for NPB score flash news of Yahoo! JAPAN SportsNavi}
-  spec.homepage      = "https://github.com/takebayashi/ruby-npb_bis"
+  spec.homepage      = "https://github.com/takebayashi/ruby-npb_flash"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"

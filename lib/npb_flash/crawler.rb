@@ -9,6 +9,8 @@ module NpbFlash
       @date = date
     end
 
+    attr_reader :date
+
     def get_metadata
       uri = 'http://baseball.yahoo.co.jp/npb/schedule/?date=' + @date.strftime('%Y%m%d')
       begin

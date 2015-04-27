@@ -6,7 +6,9 @@ deploy:
   provider: rubygems
   gems: npb_flash
   on:
+    repo: takebayashi/ruby-npb_flash
     tags: true
-    rvm: 2.2.2
+    ruby: 2.2.2
+    all_branches: true
   api_key:
     secure: iJ0QARCo42CLBLZfbwrizUTmYFdCMtWsOEFNaH+hqShToCvV8ql7yb1UCHI3v6DNCjfQG6kd6cAHikKMjycKupHY1JhvqZq5gQoglIAd61vm4O/B89aodt7rYnTWOy9XM0lO1adG4T/4Mwm1KMuMlSgWcclI74R9Khazc0qrhDw=

@@ -11,10 +11,11 @@ module NpbFlash
 
     def get_metadata
       uri = 'http://baseball.yahoo.co.jp/npb/schedule/?date=' + @date.strftime('%Y%m%d')
-      html = open(uri) do |f|
-        f.read
+      begin
+        doc = Nokogiri::HTML(open(uri), uri, 'utf-8')
+      rescue OpenURI::HTTPError => e
+        return nil
       end
-      doc = Nokogiri::HTML.parse(html, nil, 'utf-8')
       metadata = doc.xpath('//div[@id="gm_sch"]//table[@class="teams"]').map do |g|
         visitor, home = g.xpath('.//tr//th[1]//a/div/@class').map do |s|
           s.text.split(/\s/)[1]
@@ -36,10 +37,11 @@ module NpbFlash
 
     def get_game(id)
       uri = 'http://baseball.yahoo.co.jp/npb/game/' + id + '/text'
-      html = open(uri) do |f|
-        f.read
+      begin
+        doc = Nokogiri::HTML(open(uri), uri, 'utf-8')
+      rescue OpenURI::HTTPError => e
+        return nil
       end
-      doc = Nokogiri::HTML.parse(html, nil, 'utf-8')
       Game::from_node(doc, id)
     end
 
@@ -47,7 +49,7 @@ module NpbFlash
       meta = get_metadata.find do |m|
         m[:home] == team or m[:visitor] == team
       end
-      get_game(meta[:id])
+      meta.nil? ? nil : get_game(meta[:id])
     end
 
   end

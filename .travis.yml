@@ -5,6 +5,7 @@ rvm:
 deploy:
   provider: rubygems
   gems: npb_flash
+  gemspec: npb_flash.gemspec
   on:
     repo: takebayashi/ruby-npb_flash
     tags: true
